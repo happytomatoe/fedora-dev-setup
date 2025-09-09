@@ -8,8 +8,4 @@ Set of scripts and instruction on how to configure fedora development environmen
 - Disable animation: Go to system settings -> accessibility-> seeing-> Turn of animation effects
 - Open apps with hotkeys: Go to https://extensions.gnome.org/extension/1336/run-or-raise/ and install it. 
 - Install vimium chrome extension for browser
-- Install gnome tweaks -> and change to nerd font for Monospace text
-
-## TODO
-- Add config for run or raise
-- Add vscode and intellij idea
+- Install gnome tweaks ->fonts and change to nerd font for Monospace text
