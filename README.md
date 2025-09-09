@@ -15,3 +15,4 @@ Set of scripts and instruction on how to configure fedora development environmen
 - Add fzf
 - Add vscode and intellij idea
 - Add gcc for nvim
+- Add nerd font
