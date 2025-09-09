@@ -14,3 +14,4 @@ Set of scripts and instruction on how to configure fedora development environmen
 - Add config for run or raise
 - Add fzf
 - Add vscode and intellij idea
+- Add gcc for nvim
