@@ -30,6 +30,13 @@ curl -fsS https://dl.brave.com/install.sh | sh
 
 #text editor
 sudo dnf install neovim
+sudo dnf install @development-tools;
 git clone https://github.com/LazyVim/starter ~/.config/nvim
 rm -rf ~/.config/nvim/.git
+# other
+sudo dnf install fzf
 
+#nerd fonts
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip
+mkdir ~/.fonts
+unzip JetBrainsMono.zip -d ~/.fonts;
