@@ -49,6 +49,6 @@ sudo dnf install -y code
 
 #atuin 
 sudo dnf install -y atuin
-yes| bash <(curl --proto '=https' --tlsv1.2 -sSf https://setup.atuin.sh)
+echo 'eval "$(atuin init zsh)"' >> ~/.zshrc
 atuin import auto
 
