@@ -47,6 +47,14 @@ sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.m
 sudo dnf update
 sudo dnf install -y code
 
+#intellij idea
+sudo dnf install -y snapd
+sudo ln -s /var/lib/snapd/snap /snap
+sudo systemctl restart snapd
+sudo snap install intellij-idea-community --classic
+
+
+
 #atuin 
 sudo dnf install -y atuin
 echo 'eval "$(atuin init zsh)"' >> ~/.zshrc

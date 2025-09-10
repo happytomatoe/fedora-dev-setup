@@ -6,6 +6,5 @@ Set of scripts and instruction on how to configure fedora development environmen
 1) Run install.sh
 2) To configure manually
 - Disable animation: Go to system settings -> accessibility-> seeing-> Turn of animation effects
-- Open apps with hotkeys: Go to https://extensions.gnome.org/extension/1336/run-or-raise/ and install it. 
 - Install vimium chrome extension for browser
-- Install gnome tweaks ->fonts and change to nerd font for Monospace text
+- Pin apps. They can be opened with windows+1,2,...
