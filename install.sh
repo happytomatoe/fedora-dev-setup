@@ -1,5 +1,4 @@
 # terminal
-sudo dnf install -y alacrity
 sudo dnf install -y ghostty
 
 sudo dnf install -y zsh
@@ -35,11 +34,7 @@ sudo dnf install -y neovim
 sudo dnf install -y @development-tools;
 git clone https://github.com/LazyVim/starter ~/.config/nvim
 rm -rf ~/.config/nvim/.git
-# other~/.config/run-or-raise/shortcuts.conf|pbc
 sudo dnf install -y fzf
-
-# run or raise conf
-cp shortcuts.conf ~/.config/run-or-raise/
 
 #vscode
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
@@ -52,8 +47,6 @@ sudo dnf install -y snapd
 sudo ln -s /var/lib/snapd/snap /snap
 sudo systemctl restart snapd
 sudo snap install intellij-idea-community --classic
-
-
 
 #atuin 
 sudo dnf install -y atuin
