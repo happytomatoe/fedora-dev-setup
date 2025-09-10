@@ -44,10 +44,40 @@ sudo dnf update
 sudo dnf install -y code
 
 #intellij idea
-sudo dnf install -y snapd
-sudo ln -s /var/lib/snapd/snap /snap
-sudo systemctl restart snapd
-sudo snap install intellij-idea-community --classic
+# download latest
+wget -P ~/Downloads $( curl -s "https://data.services.jetbrains.com/products/releases?code=IIC" | jq -r '.IIC[0].downloads.linux.link')
+sudo tar -xzf ~/Downloads/ideaIC-*.tar.gz -C /opt   
+
+#TODO: fix shortcut
+IDEA_HOME=$(readlink -f /opt/idea-)
+INTELLIJ_BIN_PATH="$IDEA_HOME/bin"
+
+# Path to IntelliJ IDEA icon (optional but recommended)
+ICON_PATH="$INTELLIJ_BIN_PATH/idea.svg"
+
+# Output .desktop file path
+DESKTOP_FILE="$HOME/.local/share/applications/intellij-idea-ce.desktop"
+
+# Create the .desktop file content
+cat > "$DESKTOP_FILE" <<EOF
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=IntelliJ IDEA Community Edition
+Exec=$INTELLIJ_BIN_PATH/idea.sh %f
+Icon=$ICON_PATH
+Comment=Capable and Ergonomic IDE for JVM
+Categories=Development;IDE;
+Terminal=false
+StartupWMClass=jetbrains-idea-ce
+StartupNotify=true
+EOF
+
+# Make the desktop file executable
+chmod +x "$DESKTOP_FILE"
+
+echo "Desktop shortcut created at $DESKTOP_FILE"
+
 
 #atuin 
 sudo dnf install -y atuin
