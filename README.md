@@ -8,3 +8,5 @@ Set of scripts and instruction on how to configure fedora development environmen
 - Disable animation: Go to system settings -> accessibility-> seeing-> Turn of animation effects
 - Install vimium chrome extension for browser
 - Pin apps. They can be opened with windows+1,2,...
+
+If you've configured powerlevel10k theme disabled plugins in ~/.p10k.zsh. That's what the changed version does
