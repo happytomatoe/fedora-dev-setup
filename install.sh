@@ -12,9 +12,6 @@ zsh -c "source ~/.zshrc"
 #terminal multiplexer
 sudo dnf copr enable varlad/zellij
 sudo dnf install -y zellij
-# start zellij in ghostty
-echo '[[ "$TERM" = "xterm-ghostty" ]] && eval "$(zellij setup --generate-auto-start bash)"' >> ~/.zshrc
-
 
 # browser
 curl -fsS https://dl.brave.com/install.sh | sh

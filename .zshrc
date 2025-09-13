@@ -71,7 +71,7 @@ zinit ice atclone"dircolors -b LS_COLORS > clrs.zsh" \
     atload'zstyle ":completion:*" list-colors “${(s.:.)LS_COLORS}”'
 zinit light trapd00r/LS_COLORS
 
-
+#mac command to copy to clipboard
 alias pbcopy='xclip -selection clipboard'
 
 . "$HOME/.atuin/bin/env"
