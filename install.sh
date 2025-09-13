@@ -2,6 +2,15 @@
 sudo dnf install -y ghostty
 # something like bash
 sudo dnf install -y zsh
+
+#atuin 
+sudo dnf install -y atuin
+atuin import auto
+
+#terminal multiplexer
+sudo dnf copr enable varlad/zellij
+sudo dnf install -y zellij
+
 # zsh package/plugin manage
 bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
 cp .zshrc ~
@@ -9,9 +18,6 @@ cp .p10k.zsh ~
 
 zsh -c "source ~/.zshrc"
 
-#terminal multiplexer
-sudo dnf copr enable varlad/zellij
-sudo dnf install -y zellij
 
 # browser
 curl -fsS https://dl.brave.com/install.sh | sh
@@ -65,8 +71,4 @@ chmod +x "$DESKTOP_FILE"
 echo "Desktop shortcut created at $DESKTOP_FILE"
 
 
-#atuin 
-sudo dnf install -y atuin
-echo 'eval "$(atuin init zsh)"' >> ~/.zshrc
-atuin import auto
 
