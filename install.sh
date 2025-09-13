@@ -4,8 +4,8 @@ sudo dnf install -y ghostty
 sudo dnf install -y zsh
 # zsh package/plugin manage
 bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
-
-
+cp .zshrc ~
+cp .p10k.zsh ~
 
 zsh -c "source ~/.zshrc"
 
