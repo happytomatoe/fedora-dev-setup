@@ -76,7 +76,7 @@ APP_EXEC="${PYCHARM_HOME}/bin/pycharm"
 APP_ICON="${PYCHARM_HOME}/bin/pycharm.svg"
 create_desktop_icon "pycharm" $PYCHARM_HOME $APP_EXEC $APP_ICON
 
-#TODO: fix shortcut
+#idea desktop shortcut
 IDEA_HOME=$(readlink -f /opt/idea-*)
 INTELLIJ_BIN_PATH="$IDEA_HOME/bin"
 ICON_PATH="$INTELLIJ_BIN_PATH/idea.svg"
