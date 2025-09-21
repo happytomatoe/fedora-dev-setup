@@ -4,6 +4,8 @@ sudo dnf install -y ghostty
 sudo dnf install -y fish
 # fuzzy finder
 sudo dnf install -y fzf
+# jump with z and fuzzy keyword for folder that you've already visited
+sudo dnf install -y zoxide 
 #fished - plugin manager for fish
 curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
 # fish plugins
@@ -12,6 +14,7 @@ fisher install patrickf1/colored_man_pages.fish
 fisher install suizman/fish-top
 fisher install oh-my-fish/plugin-foreign-env
 fisher install gazorby/fish-abbreviation-tips
+fisher install kidonng/zoxide.fish
 # TODO add aliases for git
 #terminal multiplexer
 sudo dnf copr enable varlad/zellij
