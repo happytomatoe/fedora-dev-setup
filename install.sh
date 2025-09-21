@@ -1,22 +1,21 @@
 # terminal
 sudo dnf install -y ghostty
-# something like bash
-sudo dnf install -y zsh
-
-#atuin 
-sudo dnf install -y atuin
-atuin import auto
-
+# something like bash but more interactive
+sudo dnf install -y fish
+# fuzzy finder
+sudo dnf install -y fzf
+#fished - plugin manager for fish
+curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+# fish plugins
+fisher install PatrickF1/fzf.fish
+fisher install patrickf1/colored_man_pages.fish
+fisher install suizman/fish-top
+fisher install oh-my-fish/plugin-foreign-env
+fisher install gazorby/fish-abbreviation-tips
+# TODO add aliases for git
 #terminal multiplexer
 sudo dnf copr enable varlad/zellij
 sudo dnf install -y zellij
-
-# zsh package/plugin manage
-bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
-cp .zshrc ~
-cp .p10k.zsh ~
-
-zsh -c "source ~/.zshrc"
 
 
 # browser
@@ -27,7 +26,7 @@ sudo dnf install -y neovim
 sudo dnf install -y @development-tools;
 git clone https://github.com/LazyVim/starter ~/.config/nvim
 rm -rf ~/.config/nvim/.git
-sudo dnf install -y fzf
+
 
 #vscode
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
