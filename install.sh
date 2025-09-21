@@ -2,6 +2,7 @@
 sudo dnf install -y ghostty
 # something like bash but more interactive
 sudo dnf install -y fish
+chsh -s $(which fish)
 # fuzzy finder
 sudo dnf install -y fzf
 # jump with z and fuzzy keyword for folder that you've already visited
