@@ -20,7 +20,8 @@ fisher install kidonng/zoxide.fish
 #terminal multiplexer
 sudo dnf copr enable varlad/zellij
 sudo dnf install -y zellij
-
+# because you can't live docker
+sudo dnf install -y docker-cli
 
 # browser
 curl -fsS https://dl.brave.com/install.sh | sh
