@@ -56,7 +56,7 @@ PYCHARM_HOME=$(readlink -f /opt/pycharm-community-*)
 desktop_app=~/.local/share/applications/pycharm.desktop
 touch $desktop_app
 PYCHARM_HOME=$(readlink -f /opt/pycharm-community-*)
-APP_EXEC="${PYCHARM_HOME}/bin/pycharm.sh"
+APP_EXEC="${PYCHARM_HOME}/bin/pycharm"
 APP_ICON="${PYCHARM_HOME}/bin/pycharm.svg"
 APP_DIR=$PYCHARM_HOME
 
