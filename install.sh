@@ -22,6 +22,10 @@ sudo dnf copr enable varlad/zellij
 sudo dnf install -y zellij
 # because you can't live docker
 sudo dnf install -y docker-cli
+sudo systemctl enable --now docker
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
 
 # browser
 curl -fsS https://dl.brave.com/install.sh | sh
