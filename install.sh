@@ -51,7 +51,7 @@ sudo tar -xzf ~/Downloads/ideaIC-*.tar.gz -C /opt
 #pycharm
 wget -P ~/Downloads $( curl -s "https://data.services.jetbrains.com/products/releases?code=pcc" | jq -r '.PCC[0].downloads.linux.link')
 sudo tar -xzf ~/Downloads/pycharm-community-*.tar.gz -C /opt   
-PYCHARM_HOME=$(readlink -f /opt/pycharm-community-*)
+
 #pycharm desktop app
 desktop_app=~/.local/share/applications/pycharm.desktop
 touch $desktop_app
