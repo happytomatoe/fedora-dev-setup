@@ -48,8 +48,29 @@ sudo dnf install -y code
 wget -P ~/Downloads $( curl -s "https://data.services.jetbrains.com/products/releases?code=IIC" | jq -r '.IIC[0].downloads.linux.link')
 sudo tar -xzf ~/Downloads/ideaIC-*.tar.gz -C /opt   
 
+#pycharm
+wget -P ~/Downloads $( curl -s "https://data.services.jetbrains.com/products/releases?code=pcc" | jq -r '.PCC[0].downloads.linux.link')
+sudo tar -xzf ~/Downloads/pycharm-community-*.tar.gz -C /opt   
+PYCHARM_HOME=$(readlink -f /opt/pycharm-community-*)
+#pycharm desktop app
+desktop_app=~/.local/share/applications/pycharm.desktop
+touch $desktop_app
+PYCHARM_HOME=$(readlink -f /opt/pycharm-community-*)
+APP_EXEC="${PYCHARM_HOME}/bin/pycharm.sh"
+APP_ICON="${PYCHARM_HOME}/bin/pycharm.svg"
+APP_DIR=$PYCHARM_HOME
+
+desktop-file-edit $desktop_app \
+   --set-key=Exec \
+   --set-value="${APP_EXEC}" \
+   --set-key=Icon \
+   --set-value="${APP_ICON}" \
+    --set-name="Pycharm community" \
+    --set-generic-name="Pycharm community IDE" \
+    --set-key="Type" --set-value="Application"
+
 #TODO: fix shortcut
-IDEA_HOME=$(readlink -f /opt/idea-)
+IDEA_HOME=$(readlink -f /opt/idea-*)
 INTELLIJ_BIN_PATH="$IDEA_HOME/bin"
 
 # Path to IntelliJ IDEA icon (optional but recommended)
