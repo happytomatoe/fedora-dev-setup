@@ -25,9 +25,3 @@ just copy-config
 | Container | Docker CLI |
 | Browser | Brave |
 | Dev Tools | gcc, make, etc. |
-
-## Manual Steps
-
-- Disable animation: System Settings -> Accessibility -> Seeing -> Turn off animation effects
-- Install Vimium Chrome extension for browser
-- Pin apps (accessible with Windows+1,2,...)
