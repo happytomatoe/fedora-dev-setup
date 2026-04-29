@@ -14,8 +14,6 @@ sudo dnf install -y just
 just install
 just copy-config
 ```
-```
-```
 
 ## What's Installed
 
