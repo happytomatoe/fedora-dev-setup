@@ -1,10 +1,35 @@
-# fedora-fresh-start
+# Fedora Dev Setup
 
-Set of scripts and instruction on how to configure fedora development environment after install
+Automated setup for Fedora development environment.
 
+## Quick Start
 
-1) Run install.sh
-2) To configure manually
-- Disable animation: Go to system settings -> accessibility-> seeing-> Turn of animation effects
-- Install vimium chrome extension for browser
-- Pin apps. They can be opened with windows+1,2,...
+### Prerequisites
+```bash
+sudo dnf install -y just
+```
+
+### Run Setup
+```bash
+just install
+just copy-config
+```
+```
+```
+
+## What's Installed
+
+| Category | Tools |
+|----------|-------|
+| Terminal | Ghostty, Fish shell with plugins (fzf, zoxide, etc.) |
+| Multiplexer | Zellij |
+| Editors | Neovim (LazyVim), VS Code, IntelliJ IDEA CE, PyCharm CE |
+| Container | Docker CLI |
+| Browser | Brave |
+| Dev Tools | gcc, make, etc. |
+
+## Manual Steps
+
+- Disable animation: System Settings -> Accessibility -> Seeing -> Turn off animation effects
+- Install Vimium Chrome extension for browser
+- Pin apps (accessible with Windows+1,2,...)
