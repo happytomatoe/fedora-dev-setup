@@ -166,3 +166,6 @@ fi
 echo "Disabling animation effects..."
 gsettings set org.gnome.desktop.interface enable-animations false
 gsettings set org.gnome.mutter enable-animations false 2>/dev/null || true
+
+# git settings
+git config pull.rebase false
