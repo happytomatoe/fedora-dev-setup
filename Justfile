@@ -4,6 +4,12 @@
 install:
     ./install.sh 2>&1 | tee log.txt
 
+# Copy Ghostty config
+copy-ghostty:
+    #!/bin/bash
+    mkdir -p ~/.config/ghostty
+    cp ghostty/config.ghostty ~/.config/ghostty/config.ghostty
+
 # Copy config to fish config file (idempotent)
 copy-config:
     #!/bin/bash
