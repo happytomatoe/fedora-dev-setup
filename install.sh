@@ -9,8 +9,14 @@ done &
 SUDO_KEEPER_PID=$!
 trap "kill $SUDO_KEEPER_PID 2>/dev/null; sudo -k" EXIT
 
+#==============================================================================
+# Install and setup various programs
+#==============================================================================
+
 # terminal
 sudo dnf install -y ghostty
+# clipboard
+sudo dnf install -y xclip
 # something like bash but more interactive
 sudo dnf install -y fish
 if [ "$SHELL" != "/usr/bin/fish" ]; then
@@ -28,10 +34,14 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 sudo mkdir -p /usr/local/lib/node_modules /usr/local/bin && sudo chown -R $(whoami) /usr/local/lib/node_modules /usr/local/bin
 # install rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+# golang
+sudo dnf install golang -y
 # tldr
 cargo install tlrc --locked
+#keepassxc
+sudo dnf install keepassxc -y
 
-#fished - plugin manager for fish (run in fish shell)
+#fisher - plugin manager for fish (run in fish shell)
 if ! fish -c "type -q fisher" 2>/dev/null; then
   fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
 fi
@@ -50,12 +60,11 @@ if ! sudo dnf copr list --enabled 2>/dev/null | grep -q varlad/zellij; then
 fi
 sudo dnf install -y zellij
 
-# because you can't live docker
-sudo dnf install -y docker-cli
+# because you can't live without docker
+sudo dnf install -y docker-ce docker-ce-cli containerd docker-buildx-plugin docker-compose-plugin
 sudo systemctl enable --now docker
 sudo groupadd docker || true
 sudo usermod -aG docker $USER
-
 # browser
 if ! command -v brave-browser &>/dev/null; then
   curl -fsS https://dl.brave.com/install.sh | sh
@@ -86,6 +95,7 @@ if [ ! -f /etc/yum.repos.d/vscode.repo ]; then
 fi
 sudo dnf update -y
 sudo dnf install -y code
+code --install-extension shdhuong.markdown-preview-enhanced
 
 #intellij idea
 if [ -z "$(ls -d /opt/idea-* 2>/dev/null)" ]; then
@@ -169,3 +179,4 @@ gsettings set org.gnome.mutter enable-animations false 2>/dev/null || true
 
 # git settings
 git config pull.rebase false
+
