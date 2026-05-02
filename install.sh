@@ -149,6 +149,7 @@ create_desktop_icon "intellij-idea-ce" $IDEA_HOME "$INTELLIJ_BIN_PATH/idea" $ICO
 echo "Pinning apps to dock..."
 FAVORITE_APPS=(
   "brave-browser.desktop"
+  "com.mitchellh.ghostty.desktop"
   "code.desktop"
   "intellij-idea-ce.desktop"
   "pycharm.desktop"
@@ -176,6 +177,15 @@ fi
 echo "Disabling animation effects..."
 gsettings set org.gnome.desktop.interface enable-animations false
 gsettings set org.gnome.mutter enable-animations false 2>/dev/null || true
+
+# Ctrl+Number for app switching (instead of Super+Number)
+echo "Setting Ctrl+Alt+Number for app switching..."
+for i in {1..9}; do
+  gsettings set org.gnome.shell.keybindings "switch-to-application-$i" "['<Primary>$i']"
+done
+for i in {1..10}; do
+  gsettings set org.gnome.desktop.wm.keybindings "switch-to-workspace-$i" "[]"
+done
 
 # git settings
 git config pull.rebase false
