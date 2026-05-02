@@ -61,7 +61,7 @@ fi
 sudo dnf install -y zellij
 
 # because you can't live without docker
-sudo dnf install -y docker-ce docker-ce-cli containerd docker-buildx-plugin docker-compose-plugin
+sudo dnf install -y docker-ce docker-ce-cli containerd docker-buildx-plugin docker-compose-switch
 sudo systemctl enable --now docker
 sudo groupadd docker || true
 sudo usermod -aG docker $USER
