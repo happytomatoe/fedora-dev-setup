@@ -2,12 +2,9 @@
 
 # Run the install script
 install:
+    #!/bin/env bash
     ./install.sh 2>&1 | tee log.txt
-
-# Copy Ghostty config
-copy-ghostty:
-    #!/bin/bash
-    mkdir -p ~/.config/ghostty
+    mkdir -p ~/.config/ghostty || true
     cp ghostty/config.ghostty ~/.config/ghostty/config.ghostty
 
 # Copy config to fish config file (idempotent)
@@ -26,3 +23,10 @@ copy-config:
         echo "Appending managed config..."
         cat config.fish >> "$FISH_CONFIG"
     fi
+
+
+# Headset wh1000xm3 has 2 modes by default - with micro and one without it.
+# Next setting switches modes automatically
+fix-microphone:
+  mkdir -p ~/.config/wireplumber/bluetooth.lua.d/
+  cp 51-bluez-config.lua ~/.config/wireplumber/bluetooth.lua.d/
