@@ -4,8 +4,10 @@
 install:
     #!/bin/env bash
     ./install.sh 2>&1 | tee log.txt
-    mkdir -p ~/.config/ghostty || true
-    cp ghostty/config.ghostty ~/.config/ghostty/config.ghostty
+    mkdir -p ~/.config/ghostty
+    if ! cmp -s ghostty/config.ghostty ~/.config/ghostty/config.ghostty 2>/dev/null; then
+        cp ghostty/config.ghostty ~/.config/ghostty/config.ghostty
+    fi
 
 # Copy config to fish config file (idempotent)
 copy-config:
