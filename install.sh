@@ -43,6 +43,7 @@ sudo chown -R $(whoami) /usr/local/lib/node_modules
 if ! command -v rustc &>/dev/null; then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 fi
+fish -c "fish_add_path $HOME/.cargo/bin"
 # golang
 sudo dnf install golang -y
 fish -c "fish_add_path $HOME/go/bin"
@@ -121,94 +122,98 @@ fi
 sudo dnf install -y code
 
 #intellij idea
-# if [ -z "$(ls -d /opt/idea-* 2>/dev/null)" ]; then
-#   rm -f ~/Downloads/ideaIC-*.tar.gz*
-#   IDEA_URL=$(curl -s "https://data.services.jetbrains.com/products/releases?code=IIC" | jq -r '.IIC[0].downloads.linux.link')
-#   wget -P ~/Downloads "$IDEA_URL"
-#   sudo tar -xzf ~/Downloads/ideaIC-*.tar.gz -C /opt
-# fi
-#
+if [ -z "$(ls -d /opt/idea-* 2>/dev/null)" ]; then
+  rm -f ~/Downloads/idea-*.tar.gz*
+  IDEA_URL=$(curl -s "https://data.services.jetbrains.com/products/releases?code=IIC" | jq -r '.IIC[0].downloads.linux.link')
+  wget -P ~/Downloads "$IDEA_URL"
+  sudo tar -xzf ~/Downloads/idea-*.tar.gz -C /opt
+fi
+
 ##pycharm
-# if [ -z "$(ls -d /opt/pycharm-community-* 2>/dev/null)" ]; then
-#   rm -f ~/Downloads/pycharm-community-*.tar.gz*
-#   PYCHARM_URL=$(curl -s "https://data.services.jetbrains.com/products/releases?code=pcc" | jq -r '.PCC[0].downloads.linux.link')
-#   wget -P ~/Downloads "$PYCHARM_URL"
-#   sudo tar -xzf ~/Downloads/pycharm-community-*.tar.gz -C /opt
-# fi
-#
-# create_desktop_icon() {
-#   desktop_file_name=$1
-#   app_path=$2
-#   executable=$3
-#   icon=$4
-#
-#   mkdir -p ~/.local/share/applications
-#   desktop_app=~/.local/share/applications/$desktop_file_name.desktop
-#   touch $desktop_app
-#
-#   desktop-file-edit $desktop_app \
-#     --set-key=Exec \
-#     --set-value="${executable}" \
-#     --set-key=Icon \
-#     --set-value="${icon}" \
-#     --set-name="Pycharm community" \
-#     --set-key="Type" --set-value="Application"
-#   echo "Desktop shortcut created at $desktop_app"
-# }
-#
-##pycharm desktop app
-# PYCHARM_HOME=$(readlink -f /opt/pycharm-community-*)
-# APP_EXEC="${PYCHARM_HOME}/bin/pycharm"
-# APP_ICON="${PYCHARM_HOME}/bin/pycharm.svg"
-# create_desktop_icon "pycharm" $PYCHARM_HOME $APP_EXEC $APP_ICON
-#
-##idea desktop shortcut
-# IDEA_HOME=$(readlink -f /opt/idea-*)
-# INTELLIJ_BIN_PATH="$IDEA_HOME/bin"
-# ICON_PATH="$INTELLIJ_BIN_PATH/idea.svg"
-# create_desktop_icon "intellij-idea-ce" $IDEA_HOME "$INTELLIJ_BIN_PATH/idea" $ICON_PATH
+if [ -z "$(ls -d /opt/pycharm-* 2>/dev/null)" ]; then
+  rm -f ~/Downloads/pycharm-*.tar.gz*
+  PYCHARM_URL=$(curl -s "https://data.services.jetbrains.com/products/releases?code=pcc" | jq -r '.PCC[0].downloads.linux.link')
+  wget -P ~/Downloads "$PYCHARM_URL"
+  sudo tar -xzf ~/Downloads/pycharm-*.tar.gz -C /opt
+fi
+
+create_desktop_icon() {
+  desktop_file_name=$1
+  app_path=$2
+  executable=$3
+  icon=$4
+
+  mkdir -p ~/.local/share/applications
+  desktop_app=~/.local/share/applications/$desktop_file_name.desktop
+  touch $desktop_app
+
+  desktop-file-edit $desktop_app \
+    --set-key=Exec \
+    --set-value="${executable}" \
+    --set-key=Icon \
+    --set-value="${icon}" \
+    --set-name="Pycharm community" \
+    --set-key="Type" --set-value="Application"
+  echo "Desktop shortcut created at $desktop_app"
+}
+
+#pycharm desktop app
+PYCHARM_HOME=$(readlink -f /opt/pycharm-*)
+APP_EXEC="${PYCHARM_HOME}/bin/pycharm"
+APP_ICON="${PYCHARM_HOME}/bin/pycharm.svg"
+create_desktop_icon "pycharm" $PYCHARM_HOME $APP_EXEC $APP_ICON
+
+#idea desktop shortcut
+IDEA_HOME=$(readlink -f /opt/idea-*)
+INTELLIJ_BIN_PATH="$IDEA_HOME/bin"
+ICON_PATH="$INTELLIJ_BIN_PATH/idea.svg"
+create_desktop_icon "intellij-idea-ce" $IDEA_HOME "$INTELLIJ_BIN_PATH/idea" $ICON_PATH
 
 # pin apps to dock (requires active GNOME session)
-# echo "Pinning apps to dock..."
-# FAVORITE_APPS=(
-#   "brave-browser.desktop"
-#   "com.mitchellh.ghostty.desktop"
-#   "code.desktop"
-#   "intellij-idea-ce.desktop"
-#   "pycharm.desktop"
-#   "org.gnome.Nautilus.desktop"
-# )
-#
-# VALID_APPS=()
-# for app in "${FAVORITE_APPS[@]}"; do
-#   if [ -f "/usr/share/applications/$app" ] || [ -f "$HOME/.local/share/applications/$app" ]; then
-#     VALID_APPS+=("$app")
-#   fi
-# done
-#
-# if [ ${#VALID_APPS[@]} -gt 0 ]; then
-#   LIST_STR="["
-#   for i in "${!VALID_APPS[@]}"; do
-#     LIST_STR+="'${VALID_APPS[$i]}'"
-#     [ $i -lt $((${#VALID_APPS[@]} - 1)) ] && LIST_STR+=", "
-#   done
-#   LIST_STR+="]"
-#   gsettings set org.gnome.shell favorite-apps "$LIST_STR"
-# fi
-#
+echo "Pinning apps to dock..."
+FAVORITE_APPS=(
+  "brave-browser.desktop"
+  "com.mitchellh.ghostty.desktop"
+  "code.desktop"
+  "intellij-idea-ce.desktop"
+  "pycharm.desktop"
+  "org.gnome.Nautilus.desktop"
+)
+
+VALID_APPS=()
+for app in "${FAVORITE_APPS[@]}"; do
+  if [ -f "/usr/share/applications/$app" ] || [ -f "$HOME/.local/share/applications/$app" ]; then
+    VALID_APPS+=("$app")
+  fi
+done
+
+if [ ${#VALID_APPS[@]} -gt 0 ]; then
+  LIST_STR="["
+  for i in "${!VALID_APPS[@]}"; do
+    LIST_STR+="'${VALID_APPS[$i]}'"
+    [ $i -lt $((${#VALID_APPS[@]} - 1)) ] && LIST_STR+=", "
+  done
+  LIST_STR+="]"
+  gsettings set org.gnome.shell favorite-apps "$LIST_STR"
+fi
+
 # # disable animation effects
-# echo "Disabling animation effects..."
-# gsettings set org.gnome.desktop.interface enable-animations false
-# gsettings set org.gnome.mutter enable-animations false 2>/dev/null || true
-#
+echo "Disabling animation effects..."
+gsettings set org.gnome.desktop.interface enable-animations false
+gsettings set org.gnome.mutter enable-animations false 2>/dev/null || true
+
 # # Alt+Number for app switching (instead of Super+Number)
-# echo "Setting Alt+Number for app switching..."
-# for i in {1..9}; do
-#   gsettings set org.gnome.shell.keybindings "switch-to-application-$i" "['<Alt>$i']"
-# done
-# for i in {1..10}; do
-#   gsettings set org.gnome.desktop.wm.keybindings "switch-to-workspace-$i" "[]"
-# done
+echo "Setting Alt+Number for app switching..."
+for i in {1..9}; do
+  gsettings set org.gnome.shell.keybindings "switch-to-application-$i" "['<Alt>$i']"
+done
+for i in {1..10}; do
+  gsettings set org.gnome.desktop.wm.keybindings "switch-to-workspace-$i" "[]"
+done
+
+# # Swap Caps Lock and Escape
+echo "Swapping Caps Lock and Escape..."
+gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape']"
 
 # git
 if [ "$(git config --global pull.rebase)" != "false" ]; then
