@@ -103,3 +103,6 @@ fi
 
 # search
 cargo install --locked gsearch-cli
+
+# AI
+npm i -g opencode-ai
