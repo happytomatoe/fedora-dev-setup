@@ -84,7 +84,6 @@ if ! groups $USER | grep -q docker; then
   sudo usermod -aG docker $USER
 fi
 
-
 #text editor
 sudo dnf install -y neovim
 sudo dnf install -y @development-tools
@@ -93,9 +92,8 @@ if [ ! -d ~/.config/nvim ]; then
   rm -rf ~/.config/nvim/.git
 fi
 # git
-if [ "$(git config --global pull.rebase)" != "false" ]; then
-  git config --global pull.rebase false
-fi
+git config --global pull.rebase false
+git config --global --add --bool push.autoSetupRemote true
 sudo dnf install gh -y
 if ! command -v lazygit &>/dev/null; then
   go install github.com/jesseduffield/lazygit@latest
