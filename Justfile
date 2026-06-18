@@ -1,7 +1,7 @@
 #!/usr/bin/env just
 
 # Run the install script
-install:
+install: install-fonts
     #!/bin/env bash
     ./install.sh 2>&1 | tee log.txt
     mkdir -p ~/.config/ghostty ~/.local/bin
@@ -12,6 +12,10 @@ install:
         cp gsearch_highlight.py ~/.local/bin/gsearch_highlight.py
         chmod +x ~/.local/bin/gsearch_highlight.py
     fi
+
+# Install fonts (idempotent)
+install-fonts:
+    ./install-fonts.sh
 
 # Copy config to fish config file (idempotent)
 copy-config:

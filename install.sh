@@ -60,12 +60,6 @@ fish -c "fisher install oh-my-fish/plugin-foreign-env"
 fish -c "fisher install gazorby/fish-abbreviation-tips"
 fish -c "fisher install kidonng/zoxide.fish"
 fish -c "fisher install jhillyerd/plugin-git"
-#terminal multiplexer
-if ! sudo dnf copr list --enabled 2>/dev/null | grep -q varlad/zellij; then
-  sudo dnf copr enable -y varlad/zellij
-fi
-sudo dnf install -y zellij
-
 # docker
 if [ ! -f /etc/yum.repos.d/docker-ce.repo ]; then
   sudo tee /etc/yum.repos.d/docker-ce.repo >/dev/null <<'DOCKER_EOF'
