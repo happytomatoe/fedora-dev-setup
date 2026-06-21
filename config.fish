@@ -9,9 +9,10 @@ function s --description "gsearch with rich highlighting"
 end
 export EDITOR=nvim
 # Auto-start zellij if not already in a zellij session
-alias z='zoxide query -i'
 # END_MANAGED_CONFIG
 export TERM=xterm
 source $HOME/.local/bin/env.fish
 alias docker=podman
 alias hermes-container="podman run -it --rm -v ~/.hermes:/opt/data:Z -v $(pwd):/opt/repo:Z -w /opt/repo nousresearch/hermes-agent"
+zoxide init fish | source
+abbr --add te 'toolbox enter'
