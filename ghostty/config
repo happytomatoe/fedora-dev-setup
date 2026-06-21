@@ -9,6 +9,8 @@ keybind = ctrl+7=goto_tab:7
 keybind = ctrl+8=goto_tab:8
 keybind = ctrl+9=goto_tab:9
 keybind = ctrl+shift+r=reload_config
+keybind = shift+up=scroll_page_lines:-1
+keybind = shift+down=scroll_page_lines:1
 font-family = JetBrainsMono Nerd Font
 window-inherit-working-directory = true
 
