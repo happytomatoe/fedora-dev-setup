@@ -1,3 +1,4 @@
+font-family = JetBrainsMono Nerd Font
 keybind = ctrl+1=goto_tab:1
 keybind = ctrl+2=goto_tab:2
 keybind = ctrl+3=goto_tab:3
@@ -7,7 +8,10 @@ keybind = ctrl+6=goto_tab:6
 keybind = ctrl+7=goto_tab:7
 keybind = ctrl+8=goto_tab:8
 keybind = ctrl+9=goto_tab:9
+keybind = ctrl+shift+r=reload_config
+font-family = JetBrainsMono Nerd Font
 window-inherit-working-directory = true
+
 
 term = xterm-256color
 copy-on-select = clipboard

@@ -22,7 +22,7 @@ link-configs: link-ghostty-config link-fish-config link-gsearch link-microphone
 link-ghostty-config:
     #!/bin/env bash
     mkdir -p ~/.config/ghostty
-    ln -sf "{{REPO_DIR}}/ghostty/config.ghostty" ~/.config/ghostty/config.ghostty
+    ln -sf "{{REPO_DIR}}/ghostty/config" ~/.config/ghostty/config
 
 # Link fish config
 link-fish-config:
