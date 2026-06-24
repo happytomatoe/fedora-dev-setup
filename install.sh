@@ -60,23 +60,6 @@ fish -c "fisher install oh-my-fish/plugin-foreign-env"
 fish -c "fisher install gazorby/fish-abbreviation-tips"
 fish -c "fisher install kidonng/zoxide.fish"
 fish -c "fisher install jhillyerd/plugin-git"
-# docker
-if [ ! -f /etc/yum.repos.d/docker-ce.repo ]; then
-  sudo tee /etc/yum.repos.d/docker-ce.repo >/dev/null <<'DOCKER_EOF'
-[docker-ce-stable]
-name=Docker CE Stable - $basearch
-baseurl=https://download.docker.com/linux/fedora/$releasever/$basearch/stable
-enabled=1
-gpgcheck=1
-gpgkey=https://download.docker.com/linux/fedora/gpg
-DOCKER_EOF
-fi
-sudo dnf install -y docker-ce docker-ce-cli containerd docker-buildx-plugin
-sudo systemctl enable --now docker 2>/dev/null || true
-getent group docker >/dev/null || sudo groupadd docker
-if ! groups $USER | grep -q docker; then
-  sudo usermod -aG docker $USER
-fi
 
 #text editor
 sudo dnf install -y neovim
