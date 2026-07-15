@@ -1,7 +1,7 @@
 # START_MANAGED_CONFIG
 # Tip: add secrets to ~/.config/fish/conf.d/secrets.fish
 
-alias pbcopy='xclip -selection clipboard'
+alias pbcopy='xsel --clipboard --input'
 alias n='nvim'
 alias code="flatpak run com.visualstudio.code"
 abbr d docker
@@ -21,3 +21,8 @@ abbr --add te 'toolbox enter'
 
 # Voice-to-Text: voxtral API key
 alias mc='mc -S gotar'
+
+set -gx PATH "/var/home/l/.local/bin" $PATH
+alias docker-compose='podman-compose'
+
+fish_add_path ~/Android/Sdk/emulator
