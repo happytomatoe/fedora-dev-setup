@@ -60,7 +60,6 @@ fish -c "fisher install oh-my-fish/plugin-foreign-env"
 fish -c "fisher install gazorby/fish-abbreviation-tips"
 fish -c "fisher install kidonng/zoxide.fish"
 fish -c "fisher install jhillyerd/plugin-git"
-
 #text editor
 sudo dnf install -y neovim
 sudo dnf install -y @development-tools
@@ -80,4 +79,5 @@ fi
 cargo install --locked gsearch-cli
 
 # AI
-npm i -g opencode-ai
+npm install -g bun
+bun add -g --ignore-scripts @earendil-works/pi-coding-agent
