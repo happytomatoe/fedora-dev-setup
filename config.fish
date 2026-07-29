@@ -24,5 +24,24 @@ alias mc='mc -S gotar'
 
 set -gx PATH "/var/home/l/.local/bin" $PATH
 alias docker-compose='podman-compose'
+# Bundled pi binary (extensions compiled in via `just bundle` in packages/coding-agent)
+alias pi-opt='/var/home/l/git/pi/packages/coding-agent/dist/pi'
 
-fish_add_path ~/Android/Sdk/emulator
+# Android SDK — single source of truth (referenced by justfile via $ANDROID_PATH)
+set -gx ANDROID_PATH /var/home/l/Android/Sdk
+set -gx ANDROID_HOME $ANDROID_PATH
+fish_add_path $ANDROID_PATH/emulator
+fish_add_path $ANDROID_PATH/platform-tools
+alias android-studio='/var/home/l/.local/share/JetBrains/Toolbox/apps/android-studio/bin/studio.sh'
+abbr --add unset 'set --erase'
+set -gx JITI_FS_CACHE $HOME/jitti
+alias pi-bun="bun /var/home/l/.bun/install/global/node_modules/@earendil-works/pi-coding-agent/dist/cli.js"
+
+# Api keys
+set -gx OPENROUTER_API_KEY (secret-tool lookup api_key openrouter)
+set -gx OPENCODE_API_KEY (secret-tool lookup api_key opencode-zen)
+set -gx NVIDIA_API_KEY (secret-tool lookup api_key nvidia-nim)
+set -gx OPENCODE_GO_WORKSPACE_ID wrk_01KCEHR1TJXG5CP3JBXQ88JEMW
+set -gx DEEPGRAM_API_KEY (secret-tool lookup service voice-to-text username deepgram)
+set -gx GIT_LFS_SKIP_SMUDGE 1
+set -gx HERDR_CONFIG_PATH "$HOME/git/fedora-dev-setup/herdr/config.toml"
