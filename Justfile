@@ -16,7 +16,7 @@ install: install-fonts
     ./install.sh 2>&1 | tee log.txt
 
 # Create all symlinks
-link-configs: link-ghostty-config link-fish-config link-gsearch link-microphone link-bashrc install-wrappers
+link-configs: link-ghostty-config link-fish-config link-fish-functions link-gsearch link-microphone link-bashrc link-herdr-config install-wrappers
 
 # Link ghostty config
 link-ghostty-config:
@@ -30,10 +30,28 @@ link-fish-config:
     mkdir -p ~/.config/fish
     ln -sf "{{REPO_DIR}}/config.fish" ~/.config/fish/config.fish
 
+# Link fish functions (auto-loaded from ~/.config/fish/functions/)
+link-fish-functions:
+    #!/bin/env bash
+    SRC="{{REPO_DIR}}/fish/functions"
+    DST="$HOME/.config/fish/functions"
+    mkdir -p "$DST"
+    for f in "$SRC"/*.fish; do
+        [ -e "$f" ] || continue
+        ln -sf "$f" "$DST/$(basename "$f")"
+    done
+    echo "Linked fish functions from $SRC -> $DST"
+
 # Link bashrc
 link-bashrc:
     #!/bin/env bash
     ln -sf "{{REPO_DIR}}/.bashrc" ~/.bashrc
+
+# Link herdr config
+link-herdr-config:
+    #!/bin/env bash
+    mkdir -p ~/.config/herdr
+    ln -sf "{{REPO_DIR}}/herdr/config.toml" ~/.config/herdr/config.toml
 
 # Link gsearch highlight script
 link-gsearch:
