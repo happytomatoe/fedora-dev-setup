@@ -78,6 +78,16 @@ fi
 # search
 cargo install --locked gsearch-cli
 
+# terminal multiplexer for agents
+cargo install herdr
+
+# browser
+echo '==> Installing Brave Browser...'
+sudo dnf install -y dnf-plugins-core
+sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+sudo dnf install -y brave-browser
+
 # AI
 npm install -g bun
 bun add -g --ignore-scripts @earendil-works/pi-coding-agent

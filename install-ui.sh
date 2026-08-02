@@ -31,3 +31,5 @@ done
 # Swap Caps Lock and Escape
 echo "Swapping Caps Lock and Escape..."
 gsettings set org.gnome.desktop.input-sources xkb-options "['caps:swapescape']"
+# Disable overlay
+gsettings set org.gnome.mutter overlay-key ''

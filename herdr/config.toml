@@ -14,8 +14,13 @@ enabled = false
 
 [ui]
 agent_panel_sort = "priority"
-
 show_agent_labels_on_pane_borders = true
+
+
+[ui.notifications]
+agent_blocked = false
+agent_done = false
+
 [theme]
 name = "dracula"
 auto_switch = false
@@ -25,3 +30,4 @@ delivery = "off"
 
 [experimental]
 pane_history = true
+
